@@ -55,23 +55,12 @@
     <h1>상품 재고 조회 및 수정</h1>
 
     <?php
-    // 데이터베이스 연결 설정
-    $servername = "localhost";
-    $username = "root";
-    $password = "apmsetup";
-    $dbname = "bigrolling";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // 연결 확인
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include(__DIR__ . '/db_connection.php');
 
     // 상품 재고 조회 쿼리
     $select_query = "SELECT i.product_id, p.product_name, i.stock_quantity FROM INVENTORY i
                     JOIN PRODUCT p ON i.product_id = p.product_id";
-    $result = $conn->query($select_query);
+    $result = mysqli_query(connectToDatabase(), $select_query);
 
     // 결과 출력
     if ($result->num_rows > 0) {
@@ -102,15 +91,15 @@
         // 재고량 업데이트 쿼리
         $update_sql = "UPDATE INVENTORY SET stock_quantity = $new_stock_quantity WHERE product_id = $product_id";
 
-        if ($conn->query($update_sql) === TRUE) {
+        if (mysqli_query(connectToDatabase(), $update_sql) === TRUE) {
             echo "<p>재고량이 성공적으로 업데이트되었습니다.</p>";
         } else {
-            echo "<p>재고량 업데이트에 실패했습니다: " . $conn->error . "</p>";
+            echo "<p>재고량 업데이트에 실패했습니다: " . mysqli_error(connectToDatabase()) . "</p>";
         } 
     }
 
     // 연결 종료
-    $conn->close();
+    mysqli_close(connectToDatabase());
     ?>
 
 </body>

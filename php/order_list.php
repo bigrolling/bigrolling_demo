@@ -41,25 +41,14 @@
 </head>
 <body>
     <?php
-    // 데이터베이스 연결 설정
-    $servername = "localhost";
-    $username = "root";
-    $password = "apmsetup";
-    $dbname = "bigrolling";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // 연결 확인
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include(__DIR__ . '/db_connection.php');
 
     // 월별 주문 랭킹 쿼리
     $ranking_query = "SELECT DATE_FORMAT(order_date, '%Y-%m') AS month, SUM(total_price) AS total_payment
                       FROM ORDERS
                       GROUP BY month
                       ORDER BY total_payment DESC";
-    $ranking_result = $conn->query($ranking_query);
+    $ranking_result = mysqli_query(connectToDatabase(), $ranking_query);
 
     // 월별 주문 랭킹 출력
     if ($ranking_result->num_rows > 0) {
@@ -95,7 +84,7 @@
 
         // 주문 조회 쿼리
         $order_query = "SELECT * FROM ORDERS WHERE DATE_FORMAT(order_date, '%Y-%m') = '$selected_month'";
-        $order_result = $conn->query($order_query);
+        $order_result = mysqli_query(connectToDatabase(), $order_query);
 
         // 결과 출력
         if ($order_result->num_rows > 0) {
@@ -117,7 +106,7 @@
     }
 
     // 연결 종료
-    $conn->close();
+    mysqli_close(connectToDatabase());
     ?>
 </body>
 </html>
