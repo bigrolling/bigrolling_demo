@@ -145,6 +145,7 @@ if ($productId) {
 
 		nav a:hover {
 			background-color: #999;
+			text-decoration: none;
 		}
 		header a {
 			color: white;
@@ -152,7 +153,7 @@ if ($productId) {
 		}
 
 		header a:hover {
-			background-color: #999;
+			text-decoration: none;
 		}
 	</style>
 </head>
@@ -195,7 +196,7 @@ if ($productId) {
 						}
 					}
 					?>
-										<?php echo '(', $review['rating'],')';?>
+					<?php echo '(', $review['rating'],')';?>
 
 				</p>
 				<p>
