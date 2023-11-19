@@ -61,16 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODUCT 추가</title>
     <style>
-        body {
-            text-align: center;
-        }
-        h1 {
-            text-align: center;
-        }
-        form {
-            width: 50%;
-            margin: 0 auto;
-        }
         label {
             display: block;
             margin-bottom: 10px;
@@ -81,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin-bottom: 15px;
         }
         button {
-            background-color: #4CAF50;
+            background-color: gray;
             color: white;
             padding: 10px 15px;
             border: none;
@@ -89,9 +79,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             cursor: pointer;
             font-size: 16px;
         }
+        .main{
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			/* align-items: center; */
+			height: 100vh;
+		}
     </style>
 </head>
 <body>
+<?php
+include('index.php');
+?>
+    <div class="main">
+	<div style="width: 700px;">
     <h1>PRODUCT 추가</h1>
     <form method="post">
         <label for="product_name">상품 이름:</label>
@@ -115,5 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit">추가</button>
     </form>
+
+    </div>
+	</div>
 </body>
 </html>

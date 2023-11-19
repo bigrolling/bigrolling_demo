@@ -30,12 +30,9 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사용자 랭킹</title>
     <style>
-        body {
-            text-align: center;
-        }
         table {
             border-collapse: collapse;
-            width: 50%;
+            width: 80%;
             margin: 20px auto;
         }
         th, td {
@@ -46,9 +43,24 @@ if (!$result) {
         th {
             background-color: #f2f2f2;
         }
+        .main{
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			/* align-items: center; */
+			height: 100vh;
+		}
     </style>
 </head>
 <body>
+<?php
+include('index.php');
+?>
+    <div class="main">
+	<div style="width: 700px;">
     <h1>사용자 랭킹</h1>
 
     <?php if ($result) : // 결과가 있는 경우에만 아래의 내용을 표시 ?>
@@ -72,6 +84,8 @@ if (!$result) {
         <?php // 데이터베이스 연결 닫기 ?>
         <?php mysqli_close(connectToDatabase()); ?>
     <?php endif; ?>
+    </div>
+	</div>
 </body>
 </html>
 

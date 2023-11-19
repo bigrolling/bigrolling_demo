@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품 재고 조회 및 수정</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
 
-        h1 {
-            color: #333;
-        }
+        .main{
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			/* align-items: center; */
+			height: 100vh;
+		}
 
         table {
-            width: 50%;
+            width: 80%;
             border-collapse: collapse;
             margin: 20px auto;
         }
@@ -51,6 +49,11 @@
     </style>
 </head>
 <body>
+<?php
+include('index.php');
+?>
+    <div class="main">
+	<div style="width: 700px;">
 
     <h1>상품 재고 조회 및 수정</h1>
 
@@ -101,6 +104,8 @@
     // 연결 종료
     mysqli_close(connectToDatabase());
     ?>
+    </div>
+	</div>
 
 </body>
 </html>

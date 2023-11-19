@@ -38,12 +38,21 @@
         nav a:hover {
             background-color: #999;
         }
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        header a:hover {
+            background-color: #999;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Big Rolling</h1>
+        <a href="product_list.php"><h1>Big Rolling</h1></a>
+        
     </header>
     
     <nav>

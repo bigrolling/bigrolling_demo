@@ -42,9 +42,32 @@ if (isset($_POST['delete_review'])) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>리뷰 상세 페이지</title>
-	<!-- CSS -->
+	<style>
+		a {
+			color: black;
+			text-decoration: none;
+    	}
+		a:hover {
+			text-decoration: underline;
+		}
+		.main{
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			/* align-items: center; */
+			height: 100vh;
+		}
+	</style>
 </head>
 <body>
+<?php
+include('index.php');
+?>
+<div class="main">
+<div  style="width: 700px;">
 	<h1>리뷰 상세 페이지</h1>
 
 	<p><strong>제품명:</strong> <?php echo $product['product_name']; ?></p>
@@ -58,5 +81,7 @@ if (isset($_POST['delete_review'])) {
 	</form>
 
 	<?php mysqli_close(connectToDatabase()); ?>
+</div>
+</div>
 </body>
 </html>

@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
         // 상품 ID를 찾기 위한 쿼리
         $productIDQuery = "SELECT product_id FROM PRODUCT WHERE product_name LIKE '%$productName%';";
         $productIDResult = mysqli_query(connectToDatabase(), $productIDQuery);
-
+        
         // 에러 처리 및 상품 ID 가져오기
         if ($productIDResult) {
             $productIDRow = mysqli_fetch_assoc($productIDResult);
@@ -64,12 +64,6 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제품 정보 검색 결과</title>
     <style>
-        body {
-            text-align: center;
-        }
-        h1, h2, h3 {
-            text-align: center;
-        }
         table {
             margin: 0 auto; 
             border-collapse: collapse;
@@ -80,15 +74,41 @@ if (isset($_POST['submit'])) {
             text-align: left;
             padding: 8px;
         }
+        #product_name {
+            width: 80%;
+            padding: 8px;
+        }
         th {
             background-color: #f2f2f2;
         }
         form {
             margin: 20px 0; 
         }
+        .main{
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			/* align-items: center; */
+			height: 100vh;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+        a {
+			color: black;
+			text-decoration: none;
+		}
     </style>
 </head>
 <body>
+<?php
+include('index.php');
+?>
+<div class="main">
+	<div style="width: 700px;">
     <h1>제품 정보 검색</h1>
 
     <!-- 사용자로부터 제품 이름을 입력받는 폼 -->
@@ -98,7 +118,7 @@ if (isset($_POST['submit'])) {
         <input type="submit" name="submit" value="검색">
     </form>
 
-    <?php if ($inventoryResult || $orderResult || $reviewResult) : // 결과가 있는 경우에만 아래의 내용을 표시 ?>
+    <?php if (mysqli_num_rows($inventoryResult) > 0 ||  mysqli_num_rows($orderResult) > 0 ||   mysqli_num_rows($reviewResult) > 0) : // 결과가 있는 경우에만 아래의 내용을 표시 ?>
         <h2>'<?php echo $productName; ?>'에 대한 제품 정보</h2>
 
         <?php if ($inventoryResult) : // 재고 결과가 있는 경우에만 아래의 내용을 표시 ?>
@@ -135,7 +155,7 @@ if (isset($_POST['submit'])) {
             </table>
         <?php endif; ?>
 
-        <?php if ($reviewResult) : // 리뷰 결과가 있는 경우에만 아래의 내용을 표시 ?>
+        <?php if ($reviewResult ) : // 리뷰 결과가 있는 경우에만 아래의 내용을 표시 ?>
             <h3>리뷰 리스트</h3>
             <table>
                 <tr>
@@ -157,5 +177,8 @@ if (isset($_POST['submit'])) {
         <?php // 데이터베이스 연결 닫기 ?>
         <?php mysqli_close(connectToDatabase()); ?>
     <?php endif; ?>
+    
+    </div>
+</div>
 </body>
 </html>

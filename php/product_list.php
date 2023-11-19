@@ -83,9 +83,27 @@ $result = mysqli_query(connectToDatabase(), $sql);
             display: flex;
             justify-content: center; /* 가운데 정렬합니다. */
         }
+        button {
+        background-color: GRAY;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        }
+
+
     </style>
 </head>
 <body>
+<?php
+include('index.php');
+?>
     <div class="container">
     <div style=" width: 15%">
         <h1>제품 통계</h1>
@@ -100,13 +118,14 @@ $result = mysqli_query(connectToDatabase(), $sql);
                     <th>개수</th>
                 </tr>
                 <?php while ($row = mysqli_fetch_assoc($result_roll)) : ?>
-                    <tr>
+                    <tr <?php echo ($row['brand_name'] === null) ? 'style="background-color: #f8f8f8;"' : ''; ?>>
                         <!-- 브랜드별 > 카테고리별 count(ROLL UP) -->
-                        <td><?php if ($row['brand_name'] !== $currentBrand) {
+                        <td <?php echo ($row['brand_name'] == $currentBrand) ? 'style="background-color: #f8f8f8;"' : '';?>>
+                        <?php if ($row['brand_name'] !== $currentBrand) {
                             echo $row['brand_name'];
                             $currentBrand = $row['brand_name'];
                         } ?></td>
-                        <td><?php echo $row['category_name']; ?></td>
+                        <td <?php echo ($row['category_name'] == null) ? 'style="background-color: #f8f8f8;"' : '';?>><?php echo $row['category_name']; ?></td>
                         <td><?php echo $row['product_count']; ?></td>
                     </tr>
                 <?php endwhile; ?>
@@ -121,7 +140,7 @@ $result = mysqli_query(connectToDatabase(), $sql);
     <h1>제품 리스트</h1>
     <div style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
     <a href="create_product.php">
-        <button style="font-size: 14px;">+</button>
+        <button style="font-size: 14px;margin: 20px;">+</button>
     </a>
         </div></div>
     <!-- 카테고리 선택 버튼들 -->

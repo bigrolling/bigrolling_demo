@@ -5,13 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주문 조회 및 월별 주문 랭킹</title>
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20;
-        }
 
         table {
             border-collapse: collapse;
@@ -37,9 +30,24 @@
         .space {
             height: 20px;
         }
+        .main{
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			/* align-items: center; */
+			height: 100vh;
+		}
     </style>
 </head>
 <body>
+<?php
+include('index.php');
+?>
+<div class="main">
+	<div style="width: 700px;">
     <?php
     include(__DIR__ . '/db_connection.php');
 
@@ -108,5 +116,7 @@
     // 연결 종료
     mysqli_close(connectToDatabase());
     ?>
+        </div>
+	</div>
 </body>
 </html>
