@@ -1,8 +1,10 @@
 <?php
 include(__DIR__ . '/db_connection.php');
+session_start();
 
-if (isset($_GET['id'])) {
-	$productId = $_GET['id'];
+$productId = $_SESSION['selectedProductID'];
+
+if ($productId) {
 
 	// 제품 정보 가져오기
 	$productQuery = "SELECT PRODUCT.*, CATEGORY.category_name, BRAND.brand_name FROM PRODUCT LEFT JOIN 	CATEGORY ON PRODUCT.category_id = CATEGORY.category_id LEFT JOIN BRAND ON PRODUCT.brand_id = BRAND.brand_id WHERE PRODUCT.product_id = $productId";

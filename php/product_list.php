@@ -1,5 +1,6 @@
 <?php
 include(__DIR__ . '/db_connection.php');
+session_start();
 
 // Roll up 쿼리 실행 브랜드명 > 카테고리
 $sql_roll = "SELECT BRAND.brand_name, CATEGORY.category_name, COUNT(PRODUCT.product_id) AS product_count
@@ -174,9 +175,9 @@ include('index.php');
                 <tr>
                     <td><?php echo $row['product_id']; ?></td>
                     <td>
-                        <a href='product_detail.php?id=<?php echo $row['product_id']; ?>' style='color:black'>
-                            <?php echo $row['product_name']; ?>
-                        </a>
+                    <a href='#' onclick='saveAndRedirect(<?php echo $row["product_id"]; ?>); return false;' style='color:black'>
+                        <?php echo $row['product_name']; ?>
+                    </a>
                     </td>
                     <td><?php echo $row['price']; ?></td>
                     <td><?php echo $row['brand_name']; ?></td>
@@ -196,6 +197,16 @@ include('index.php');
         function showAllProducts() {
             window.location.href = "product_list.php";
         }
+        function saveAndRedirect(productId) {
+            // 세션에 값 저장
+            fetch('save_session.php?id=' + productId)
+                .then(response => response.text())
+                .then(data => {
+                    // 세션에 값이 저장되면 페이지 이동
+                    window.location.href = 'product_detail.php';
+                })
+                .catch(error => console.error('Error:', error));
+        }   
     </script>
     <?php mysqli_close(connectToDatabase()); ?>
     </div>
