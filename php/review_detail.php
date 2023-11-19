@@ -43,45 +43,72 @@ if (isset($_POST['delete_review'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>리뷰 상세 페이지</title>
 	<style>
-		a {
-			color: black;
-			text-decoration: none;
-    	}
-		a:hover {
-			text-decoration: underline;
-		}
-		.main{
-			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
+		body {
+			font-family: 'Arial', sans-serif;
 			margin: 0;
 			padding: 0;
-			display: flex;
-			justify-content: center;
-			/* align-items: center; */
-			height: 100vh;
+			background-color: #f4f4f4;
+			color: #333;
+		}
+
+		header {
+			background-color: #333;
+			color: white;
+			text-align: center;
+			padding: 1em;
+		}
+
+		h1 {
+			color: #333;
+		}
+
+		.container {
+			width: 80%;
+			margin: 0 auto;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			margin-top: 20px;
+		}
+
+		p {
+			margin: 10px 0;
+		}
+
+		button {
+			background-color: #dc3545;
+			color: white;
+			border: none;
+			padding: 10px 15px;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+
+		button:hover {
+			background-color: #c82333;
 		}
 	</style>
 </head>
 <body>
-<?php
-include('index.php');
-?>
-<div class="main">
-<div  style="width: 700px;">
-	<h1>리뷰 상세 페이지</h1>
+	<header>
+		<h1>리뷰 상세 페이지</h1>
+	</header>
 
-	<p><strong>제품명:</strong> <?php echo $product['product_name']; ?></p>
-	<p><strong>사용자 ID:</strong> <?php echo $user['username']; ?></p>
-	<p><strong>평점:</strong> <?php echo $review['rating']; ?></p>
-	<p><strong>리뷰 내용:</strong> <?php echo $review['review_text']; ?></p>
-	<p><strong>리뷰 날짜:</strong> <?php echo $review['review_date']; ?></p>
+	<div class="container">
+		<h2>리뷰 상세</h2>
+		<p><strong>제품명 | </strong> <?php echo $product['product_name']; ?></p>
+		<p><strong>작성자 | </strong> <?php echo $user['username']; ?></p>
+		<p><strong>평점 | </strong> <?php echo $review['rating']; ?></p>
+		<p><strong>내용 | </strong> <?php echo $review['review_text']; ?></p>
+		<p><strong>날짜 | </strong> <?php echo $review['review_date']; ?></p>
 
-	<form method="post" action="">
-		<button type="submit" name="delete_review">삭제</button>
-	</form>
+		<form method="post" action="">
+			<button type="submit" name="delete_review">삭제</button>
+		</form>
+	</div>
 
 	<?php mysqli_close(connectToDatabase()); ?>
-</div>
-</div>
 </body>
 </html>
+

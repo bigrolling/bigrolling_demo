@@ -31,87 +31,158 @@ if (isset($_GET['id'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo $product['product_name']; ?> 상세 페이지</title>
 	<style>
-		
-		li {
-			margin-bottom: 20px;
-			padding: 15px;
-			border: 1px solid #ddd;
-			border-radius: 8px;
-			background-color: #fff;
-			margin-right: 10px;
-			margin-left: 10px;
-		}		
-		ul {
-			list-style-type: none; 
-			padding: 0;
-		}
-		.main{
-			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
+		body {
+			font-family: 'Arial', sans-serif;
 			margin: 0;
 			padding: 0;
-			display: flex;
-			justify-content: center;
-			/* align-items: center; */
-			height: 100vh;
+			background-color: #f4f4f4;
+			color: #333;
 		}
+
+		header {
+			background-color: #333;
+			color: white;
+			text-align: center;
+			padding: 1em;
+		}
+
+		h1 {
+			color: #333;
+		}
+
+		.container {
+			width: 80%;
+			margin: 0 auto;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			margin-top: 20px;
+		}
+
+		p {
+			margin: 10px 0;
+		}
+
+		h2 {
+			color: #333;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+		}
+
+		li {
+			border: 1px solid #ddd;
+			margin: 10px 0;
+			padding: 10px;
+			border-radius: 5px;
+		}
+
+		a {
+			/* color: #007bff; */
+			text-decoration: none;
+		}
+
 		a:hover {
 			text-decoration: underline;
 		}
 
-		.back-button {
-			background-color: #ddd; 
-			padding: 10px 20px;
-			border: none;
-			border-radius: 8px;
-			margin-right: auto; 
-			margin-bottom: 10px;
+		a:visited {
+			color: #666;
 		}
-		a {
-			color: black;
-			text-decoration: none;
+
+		a:active {
+			color: #333;
+		}
+
+		.rating-star {
+			font-size: x-large;
+		}
+
+		/* button {
+			background-color: #007bff;
+			color: white;
+			border: none;
+			padding: 10px 15px;
+			cursor: pointer;
+			border-radius: 5px;
+		} */
+
+		/* button:hover {
+			background-color: #0056b3;
+		} */
+
+		button {
+			background-color: #6c757d;
+			color: white;
+			border: none;
+			padding: 10px 15px;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+
+		button:hover {
+			background-color: #5a6268;
+		}
+
+		.back-link {
+			display: inline-block;
+			margin-top: 20px;
 		}
 	</style>
 </head>
 <body>
-<?php
-include('index.php');
-?>
-<div class="main">
-	<div style="width: 700px;">
-	<h1><?php echo $product['product_name']; ?> 상세 페이지</h1>
+	<header>
+		<h1><?php echo $product['product_name']; ?> 상세 페이지</h1>
+	</header>
 
-	<p><strong>가격:</strong> <?php echo $product['price']; ?></p>
-	<p><strong>설명:</strong> <?php echo $product['description']; ?></p>
-	<p><strong>카테고리:</strong> <?php echo $product['category_name']; ?></p>
-	<p><strong>브랜드:</strong> <?php echo $product['brand_name']; ?></p>
-	<br><br>
-	<h2>리뷰</h2>
-	<?php if ($reviewResult->num_rows > 0) : ?>
-		<p><strong>평균 평점:</strong> <?php echo number_format($averageRating, 2); ?></p>
-		<ul>
-			<?php while ($review = mysqli_fetch_assoc($reviewResult)) : ?>
-				<li>
-					<p><strong>평점:</strong> <?php echo $review['rating']; ?></p>
-					<p>
-						<a href="review_detail.php?id=<?php echo $review['review_id']; ?>">
-							<?php echo $review['review_text']; ?>
-						</a>
-					</p>
-					<p><strong>리뷰 날짜:</strong> <?php echo $review['review_date']; ?></p>
-				</li>
-			<?php endwhile; ?>
-		</ul>
-	<?php else : ?>
-		<p>이 제품에 대한 리뷰가 없습니다.</p>
-	<?php endif; ?>
+	<div class="container">
+		<h2>제품 상세</h2>
+		<p class="product-description"><?php echo str_replace('.', '<br>', $product['description']); ?></p>
+		<p><strong>가격 | </strong> <?php echo $product['price']; ?></p>
+		<p><strong>카테고리 | </strong> <?php echo $product['category_name']; ?></p>
+		<p><strong>브랜드 | </strong> <?php echo $product['brand_name']; ?></p>
 
-	<a class="back-button" href="product_list.php">목록</a>
+		<p><br></p>
+		<h2>리뷰</h2>
+		<?php if ($reviewResult->num_rows > 0) : ?>
+			<p class="rating-star"><strong>⭐️</strong> <?php echo number_format($averageRating, 2); ?></p>
+			<ul>
+		<?php while ($review = mysqli_fetch_assoc($reviewResult)) : ?>
+			<li>
+				<p>
+					<?php
+					$rating = $review['rating'];
+					for ($i = 1; $i <= 5; $i++) {
+						if ($i <= $rating) {
+							echo '⭑';
+						}
+					}
+					?>
+										<?php echo '(', $review['rating'],')';?>
 
+				</p>
+				<p>
+					<a href="review_detail.php?id=<?php echo $review['review_id']; ?>">
+						<?php echo $review['review_text']; ?>
+					</a>
+				</p>
+				<p><?php echo $review['review_date']; ?></p>
+			</li>
+		<?php endwhile; ?>
+	</ul>
+		<?php else : ?>
+			<p>이 제품에 대한 리뷰가 없습니다.</p>
+		<?php endif; ?>
+
+		<a href="product_list.php" class="back-link">
+			<button>목록</button>
+		</a>
+	</div>
 
 	<?php mysqli_close(connectToDatabase()); ?>
-	</div>
-	</div>
 </body>
 </html>
 
