@@ -16,7 +16,7 @@ if ($productId) {
 	$reviewResult = mysqli_query(connectToDatabase(), $reviewQuery);
 
 	// 리뷰 평균 평점 계산
-	$averageRatingQuery = "SELECT AVG(rating) AS avg_rating FROM REVIEW WHERE product_id = $productId";
+	$averageRatingQuery = "SELECT AVG(rating) AS avg_rating FROM REVIEW WHERE product_id = $productId GROUP BY product_id";
 	$averageRatingResult = mysqli_query(connectToDatabase(), $averageRatingQuery);
 	$averageRating = mysqli_fetch_assoc($averageRatingResult)['avg_rating'];
 } else {
@@ -46,10 +46,6 @@ if ($productId) {
 			color: white;
 			text-align: center;
 			padding: 1em;
-		}
-
-		h1 {
-			color: #333;
 		}
 
 		.container {
@@ -83,16 +79,12 @@ if ($productId) {
 		}
 
 		a {
-			/* color: #007bff; */
+			color: #666;
 			text-decoration: none;
 		}
 
 		a:hover {
 			text-decoration: underline;
-		}
-
-		a:visited {
-			color: #666;
 		}
 
 		a:active {
@@ -102,19 +94,6 @@ if ($productId) {
 		.rating-star {
 			font-size: x-large;
 		}
-
-		/* button {
-			background-color: #007bff;
-			color: white;
-			border: none;
-			padding: 10px 15px;
-			cursor: pointer;
-			border-radius: 5px;
-		} */
-
-		/* button:hover {
-			background-color: #0056b3;
-		} */
 
 		button {
 			background-color: #6c757d;
@@ -133,12 +112,64 @@ if ($productId) {
 			display: inline-block;
 			margin-top: 20px;
 		}
+
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			background-color: #333;
+			padding: 15px;
+			text-align: center;
+			color: #fff;
+		}
+
+		nav {
+			display: flex;
+			justify-content: center;
+			background-color: #555;
+			padding: 10px;
+		}
+
+		nav a {
+			color: white;
+			text-decoration: none;
+			padding: 10px 20px;
+			margin: 0 10px;
+			border-radius: 5px;
+			background-color: #777;
+			transition: background-color 0.3s;
+		}
+
+		nav a:hover {
+			background-color: #999;
+		}
+		header a {
+			color: white;
+			text-decoration: none;
+		}
+
+		header a:hover {
+			background-color: #999;
+		}
 	</style>
 </head>
 <body>
 	<header>
-		<h1><?php echo $product['product_name']; ?> 상세 페이지</h1>
+		<a href="product_list.php"><h1>Big Rolling</h1></a>
 	</header>
+
+	<nav>
+		<a href="product_list.php">product list</a>
+		<a href="search_product.php">search product</a>
+		<a href="create_product.php">create product</a>
+		<a href="inventory_management.php">inventory</a>
+		<a href="order_list.php">order list</a>
+		<a href="user_ranking.php">user ranking</a>
+	</nav>
+
 
 	<div class="container">
 		<h2>제품 상세</h2>

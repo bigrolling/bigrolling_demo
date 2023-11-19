@@ -51,17 +51,6 @@ if (isset($_POST['delete_review'])) {
 			color: #333;
 		}
 
-		header {
-			background-color: #333;
-			color: white;
-			text-align: center;
-			padding: 1em;
-		}
-
-		h1 {
-			color: #333;
-		}
-
 		.container {
 			width: 80%;
 			margin: 0 auto;
@@ -88,12 +77,63 @@ if (isset($_POST['delete_review'])) {
 		button:hover {
 			background-color: #c82333;
 		}
+
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			background-color: #333;
+			padding: 15px;
+			text-align: center;
+			color: #fff;
+		}
+
+		nav {
+			display: flex;
+			justify-content: center;
+			background-color: #555;
+			padding: 10px;
+		}
+
+		nav a {
+			color: white;
+			text-decoration: none;
+			padding: 10px 20px;
+			margin: 0 10px;
+			border-radius: 5px;
+			background-color: #777;
+			transition: background-color 0.3s;
+		}
+
+		nav a:hover {
+			background-color: #999;
+		}
+		header a {
+			color: white;
+			text-decoration: none;
+		}
+
+		header a:hover {
+			background-color: #999;
+		}
 	</style>
 </head>
 <body>
 	<header>
-		<h1>리뷰 상세 페이지</h1>
+		<a href="product_list.php"><h1>Big Rolling</h1></a>
 	</header>
+
+	<nav>
+		<a href="product_list.php">product list</a>
+		<a href="search_product.php">search product</a>
+		<a href="create_product.php">create product</a>
+		<a href="inventory_management.php">inventory</a>
+		<a href="order_list.php">order list</a>
+		<a href="user_ranking.php">user ranking</a>
+	</nav>
 
 	<div class="container">
 		<h2>리뷰 상세</h2>
