@@ -114,10 +114,13 @@ include('index.php');
             
             echo "<h3>{$selected_month} 주문 정보</h3>";
             echo "<table>";
-            echo "<tr><th>주문 ID</th><th>사용자 ID</th><th>사용자 이름</th><th>주문 날짜</th><th>총 가격</th><th>주소</th><th>배송 예정일</th><th>배송 현황</th></tr>";
+            echo "<tr><th>주문 ID</th><th>사용자 ID</th><th>사용자 이름</th><th>주문 날짜</th><th>총 가격</th><th>주소</th><th>배송 예정일</th><th>배송 현황</th><th>환불(사유)</th></tr>";
             while ($row = $order_result->fetch_assoc()) {
                 $delivery_query = "SELECT * FROM SHIPPING WHERE order_id = " . $row["order_id"];
                 $delivery_result = mysqli_query(connectToDatabase(), $delivery_query);
+
+                $return_query = "SELECT * FROM RETURNS WHERE order_id = " . $row["order_id"];
+                $return_result = mysqli_query(connectToDatabase(), $return_query);
 
                 echo "<tr>";
                 echo "<td>" . $row["order_id"] . "</td>";
@@ -134,6 +137,14 @@ include('index.php');
                 }else {
                     echo "<td colspan='3'>배송 정보 없음</td>";
                 }
+                if ($return_result->num_rows > 0){
+                    while ($return_row = $return_result->fetch_assoc()) {
+                        echo "<td> O<br>" . $return_row["return_reason"] . "</td>";
+                    }
+                }else {
+                    echo "<td>X</td>";
+                }
+
         
                 echo "</tr>";
                 
