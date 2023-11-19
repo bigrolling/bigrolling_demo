@@ -7,8 +7,8 @@ if (isset($_GET['id'])) {
     // 세션에 선택된 제품 ID 저장
     $_SESSION['selectedProductID'] = $productId;
 
-    echo 'Success';
+    echo '성공';
 } else {
-    echo 'Error: Product ID not provided';
+    echo '저장 실패';
 }
 ?>
