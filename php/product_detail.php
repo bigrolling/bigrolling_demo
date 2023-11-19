@@ -173,6 +173,7 @@ if ($productId) {
 
 	<div class="container">
 		<h2>제품 상세</h2>
+		<p><strong><?php echo $product['product_name']; ?></strong></p>
 		<p class="product-description"><?php echo str_replace('.', '<br>', $product['description']); ?></p>
 		<p><strong>가격 | </strong> <?php echo $product['price']; ?></p>
 		<p><strong>카테고리 | </strong> <?php echo $product['category_name']; ?></p>
@@ -190,7 +191,7 @@ if ($productId) {
 					$rating = $review['rating'];
 					for ($i = 1; $i <= 5; $i++) {
 						if ($i <= $rating) {
-							echo '⭑';
+							echo '⭐️';
 						}
 					}
 					?>
