@@ -8,7 +8,7 @@
 
         table {
             border-collapse: collapse;
-            width: 50%;
+            width: 80%;
             margin-top: 20px;
         }
 
@@ -85,27 +85,47 @@ include('index.php');
         <input type="submit" value="조회">
     </form>
 
+    
     <?php
     // POST로 전달된 달 정보
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $selected_month = $_POST["month"];
 
         // 주문 조회 쿼리
-        $order_query = "SELECT * FROM ORDERS WHERE DATE_FORMAT(order_date, '%Y-%m') = '$selected_month'";
+        $order_query = "SELECT ORDERS.*, USER.username
+        FROM ORDERS
+        LEFT JOIN USER ON ORDERS.user_id = USER.user_id
+        WHERE DATE_FORMAT(order_date, '%Y-%m') = '$selected_month'";
         $order_result = mysqli_query(connectToDatabase(), $order_query);
 
         // 결과 출력
         if ($order_result->num_rows > 0) {
+            
             echo "<h3>{$selected_month} 주문 정보</h3>";
             echo "<table>";
-            echo "<tr><th>주문 ID</th><th>사용자 ID</th><th>주문 날짜</th><th>총 가격</th></tr>";
+            echo "<tr><th>주문 ID</th><th>사용자 ID</th><th>사용자 이름</th><th>주문 날짜</th><th>총 가격</th><th>주소</th><th>배송 예정일</th><th>배송 현황</th></tr>";
             while ($row = $order_result->fetch_assoc()) {
+                $delivery_query = "SELECT * FROM SHIPPING WHERE order_id = " . $row["order_id"];
+                $delivery_result = mysqli_query(connectToDatabase(), $delivery_query);
+
                 echo "<tr>";
                 echo "<td>" . $row["order_id"] . "</td>";
                 echo "<td>" . $row["user_id"] . "</td>";
+                echo "<td>" . $row["username"] . "</td>";
                 echo "<td>" . $row["order_date"] . "</td>";
                 echo "<td>" . $row["total_price"] . "</td>";
+                if ($delivery_result->num_rows > 0){
+                    while ($delivery_row = $delivery_result->fetch_assoc()) {
+                        echo "<td>" . $delivery_row["address"] . "</td>";
+                        echo "<td>" . $delivery_row["ship_date"] . "</td>";
+                        echo "<td>" . $delivery_row["status"] . "</td>";
+                    }
+                }else {
+                    echo "<td colspan='3'>배송 정보 없음</td>";
+                }
+        
                 echo "</tr>";
+                
             }
             echo "</table>";
         } else {
