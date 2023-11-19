@@ -56,10 +56,12 @@
     </header>
     
     <nav>
-        <a href="search_product.php">search_product</a>
-        <a href="user_ranking.php">user_ranking</a>
-        <a href="order_list.php">order_list</a>
-        <a href="inventory_management.php">inventory_management</a>
+        <a href="product_list.php">product list</a>
+        <a href="search_product.php">search product</a>
+        <a href="create_product.php">create product</a>
+        <a href="inventory_management.php">inventory</a>
+        <a href="order_list.php">order list</a>
+        <a href="user_ranking.php">user ranking</a>
     </nav>
 
 </body>
