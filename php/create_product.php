@@ -70,6 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding: 8px;
             margin-bottom: 15px;
         }
+        h1 {
+            text-align: center;
+        }
         button {
             background-color: gray;
             color: white;
@@ -81,7 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         .main{
 			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
 			margin: 0;
 			padding: 0;
 			display: flex;

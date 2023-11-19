@@ -40,17 +40,18 @@ if (!$result) {
             text-align: left;
             padding: 8px;
         }
+        h1 {
+            text-align: center;
+        }
         th {
             background-color: #f2f2f2;
         }
         .main{
 			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
 			margin: 0;
 			padding: 0;
 			display: flex;
 			justify-content: center;
-			/* align-items: center; */
 			height: 100vh;
 		}
     </style>

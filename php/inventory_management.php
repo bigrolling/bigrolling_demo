@@ -8,7 +8,6 @@
 
         .main{
 			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
 			margin: 0;
 			padding: 0;
 			display: flex;
@@ -16,10 +15,14 @@
 			/* align-items: center; */
 			height: 100vh;
 		}
+        h1 {
+            text-align: center;
+        }
 
         table {
-            width: 80%;
+            width: 100%;
             border-collapse: collapse;
+            text-align: center;
             margin: 20px auto;
         }
 

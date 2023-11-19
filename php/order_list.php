@@ -8,7 +8,7 @@
 
         table {
             border-collapse: collapse;
-            width: 80%;
+            width: 100%;
             margin-top: 20px;
         }
 
@@ -16,6 +16,16 @@
             border: 1px solid black;
             padding: 8px;
             text-align: left;
+        }
+        h1 {
+            text-align: center;
+        }
+        
+        h2 {
+            text-align: center;
+        }
+        h3 {
+            text-align: center;
         }
 
         th {
@@ -25,6 +35,9 @@
         form {
             margin-bottom: 20px;
             margin-top: 20px;
+            align-items: center;
+			display: flex;
+			justify-content: center;
         }
 
         .space {
@@ -32,12 +45,10 @@
         }
         .main{
 			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
 			margin: 0;
 			padding: 0;
 			display: flex;
 			justify-content: center;
-			/* align-items: center; */
 			height: 100vh;
 		}
     </style>
