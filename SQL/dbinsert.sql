@@ -87,7 +87,7 @@ INSERT INTO USER(username, email, gender, phonenumber) VALUES
 ('장미영', 'rose@naver.com', '여자', '010-2345-6789'),
 ('송승현', 'songss@naver.com', '남자', '010-7890-1234'),
 ('한지수', 'hansoo@naver.com', '여자', '010-4321-5678'),
-('오승민', 'ohoh@naver.com', '남자', '010-6543-7890').
+('오승민', 'ohoh@naver.com', '남자', '010-6543-7890'),
 ('하지연', 'hahajiji@naver.com', '여자', '010-1221-1234'),
 ('김승민', 'sosomanysungmin@naver.com', '남자', '010-0000-5678'),
 ('정유라', 'imura@naver.com', '남자', '010-1211-7890')
@@ -349,7 +349,7 @@ INSERT INTO ORDERS(user_id, order_date, total_price) VALUES
 (9, '2023-11-05', 117000),
 (20, '2023-11-09', 45000),
 
-(1, '2023-10-01', 244000)
+(1, '2023-10-01', 244000),
 (2, '2023-10-02', 192600),
 (3, '2023-10-04', 223200),
 (4, '2023-10-07', 122200),
