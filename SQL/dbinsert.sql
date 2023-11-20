@@ -1,4 +1,4 @@
-use bigrolling;
+use team16;
 
 INSERT INTO USER(username, email, gender, phonenumber) VALUES
 ('허채린', 'julia@naver.com', '여자', '010-2600-0982'),

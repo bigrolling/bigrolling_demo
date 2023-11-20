@@ -1,5 +1,5 @@
-create database bigrolling;
-use bigrolling;
+create database team16;
+use team16;
 
 create table USER(
 	  user_id INT NOT NULL AUTO_INCREMENT,

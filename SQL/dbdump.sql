@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.4.28-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: bigrolling
+-- Host: localhost    Database: team16
 -- ------------------------------------------------------
 -- Server version	10.4.28-MariaDB
 
@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `bigrolling`
+-- Current Database: `team16`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `bigrolling` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `team16` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 
-USE `bigrolling`;
+USE `team16`;
 
 --
 -- Table structure for table `brand`
